@@ -1,0 +1,34 @@
+public UserCreateRespose createuser(UserCreateRequest request) {
+
+    // 1 get default role
+    Role role = roleRepository.findByRoleName("EMPLOYEE")
+            .orElseThrow(() -> new RuntimeException("Role not found"));
+
+    // 2 create employee
+    Employee employee = new Employee();
+    employee.setFirstname(request.getFirstName());
+    employee.setLastname(request.getLastName());
+    employee.setPhoneNumber(request.getPhoneNumber());
+    employee.setEmployeeStatus(EmployeeStatus.ACTIVE);
+
+    employeeRepository.save(employee);
+
+    // 3 create user
+    User user = new User();
+    user.setEmail(request.getEmail());
+    user.setPassword(passwordEncoder.encode(request.getPassword()));
+    user.setRole(role);
+    user.setEmployee(employee);
+    user.setAccountStatus(AccountStatus.ACTIVE);
+    user.setCreatedAt(LocalDateTime.now());
+
+    User savedUser = userRepository.save(user);
+
+    // 4 response
+    return new UserCreateRespose(
+            savedUser.getUserId(),
+            savedUser.getEmail(),
+            role.getRoleName(),
+            employee.getEmpId()
+    );
+}
