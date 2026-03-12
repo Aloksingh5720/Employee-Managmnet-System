@@ -11,5 +11,5 @@ public interface EmployeeRepo extends JpaRepository <Employee,Long> {
     public Employee findByFirstName(String firstName);
 
 
-
+    Object findByManager(Employee manager);
 }

@@ -30,7 +30,7 @@ public class User implements UserDetails {
 
     @OneToOne
     @JoinColumn(name = "employee_Id")
-Employee employee;
+    Employee employee;
 
     @Enumerated(EnumType.STRING)
     private AccountStatus accountStatus;

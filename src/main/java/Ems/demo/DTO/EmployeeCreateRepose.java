@@ -1,24 +1,22 @@
 package Ems.demo.DTO;
 
 import Ems.demo.Entity.ENUM.AccountStatus;
-import Ems.demo.Entity.ENUM.EmployeeStatus;
-import Ems.demo.Entity.ENUM.RoleType;
 import lombok.Data;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
-public class UserCreateRespose {
 
+public class EmployeeCreateRepose {
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
+    private String address;
 
-    private Long userId;
-    private String email;
+    // user login
+
     private String roleName;
     private Long employeeId;
     private AccountStatus accountStatus;
     private LocalDateTime createdAt;
-
-
-
 }

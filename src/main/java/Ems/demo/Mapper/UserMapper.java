@@ -1,49 +1,38 @@
 package Ems.demo.Mapper;
 
-import Ems.demo.DTO.UserCreateRequest;
-import Ems.demo.DTO.UserCreateRespose;
+import Ems.demo.DTO.EmployeeCreateRepose;
+import Ems.demo.DTO.EmployeeCreateRequestDto;
+import Ems.demo.Entity.Employee;
 import Ems.demo.Entity.User;
-import Ems.demo.Security.SecurityConfig;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapper {
 
 
-    public User dtoToUser(UserCreateRequest req){
+    public User dtoToUser(EmployeeCreateRequestDto req) {
 
         User user = new User();
         user.setEmail(req.getEmail());
         user.setPassword(req.getPassword());
-
-        return  user;
-
-
-
+        return user;
     }
+    // send employee repose
+
+    public EmployeeCreateRepose EntitytoDto(User user, Employee employee) {
 
 
+        EmployeeCreateRepose repose = new EmployeeCreateRepose();
 
-
-
-
-
-    public UserCreateRespose EntitytoDto(User user){
-
-
-        UserCreateRespose userC = new UserCreateRespose();
-        userC.setUserId(user.getUserId());
-        userC.setEmail(user.getEmail());
-        userC.setCreatedAt(user.getCreatedAt());
-        userC.setAccountStatus(user.getAccountStatus());
-        userC.setRoleName(user.getRole().toString());
-        userC.setEmployeeId(user.getEmployee().getEmpId());
-
-        return  userC;
-
-
-
-
+        repose.setCreatedAt(user.getCreatedAt());
+        repose.setAccountStatus(user.getAccountStatus());
+        repose.setRoleName(user.getRole().toString());
+        repose.setEmployeeId(Long.valueOf(user.getEmployee().getEmpId()));
+        repose.setFirstName(employee.getFirstName());
+        repose.setLastName(employee.getLastName());
+        repose.setPhoneNumber(employee.getPhoneNumber());
+        repose.setAddress(employee.getAddress());
+        return repose;
 
 
     }

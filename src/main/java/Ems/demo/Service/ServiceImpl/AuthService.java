@@ -1,10 +1,8 @@
 package Ems.demo.Service.ServiceImpl;
 
-import Ems.demo.DTO.AuthLoginRespose;
-import Ems.demo.DTO.AuthloginRequest;
-import Ems.demo.DTO.UserCreateRequest;
-import Ems.demo.DTO.UserCreateRespose;
+import Ems.demo.DTO.*;
 import Ems.demo.Entity.ENUM.AccountStatus;
+import Ems.demo.Entity.ENUM.EmployeeStatus;
 import Ems.demo.Entity.ENUM.RoleType;
 import Ems.demo.Entity.Employee;
 import Ems.demo.Entity.Role;
@@ -21,6 +19,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Service
@@ -40,12 +39,14 @@ EmployeeMapper employeeMapper;
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    public UserCreateRespose createuser(UserCreateRequest request) {
+    public EmployeeCreateRepose createuser(EmployeeCreateRequestDto request) {
 
 
         Role role =  roleRepo.findByRoleName(RoleType.ROLE_EMPLOYEE);
 
         Employee employee = employeeMapper.toEmployee(request);
+        employee.setEmployeeStatus(EmployeeStatus.ACTIVE);
+        employee.setDateOfJoining(LocalDate.now());
 
         employeeRepo.save(employee);
 
@@ -59,14 +60,14 @@ EmployeeMapper employeeMapper;
         User saveduser =userRepo.save(user); // why here error
 
 
-        return  userMapper.EntitytoDto(saveduser);
+        return  userMapper.EntitytoDto(saveduser,employee);
 
 
 
 
 
     }
-
+//
 
     public AuthLoginRespose Login(AuthloginRequest loginRequest) {
 

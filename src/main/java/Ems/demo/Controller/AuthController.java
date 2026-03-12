@@ -1,9 +1,6 @@
 package Ems.demo.Controller;
 
-import Ems.demo.DTO.AuthLoginRespose;
-import Ems.demo.DTO.AuthloginRequest;
-import Ems.demo.DTO.UserCreateRequest;
-import Ems.demo.DTO.UserCreateRespose;
+import Ems.demo.DTO.*;
 import Ems.demo.Service.ServiceImpl.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +14,7 @@ public class AuthController {
 @Autowired
 private AuthService authService;
     @PostMapping("/create")
-    public UserCreateRespose createUser(@RequestBody UserCreateRequest request){
+    public EmployeeCreateRepose createEmployee(@RequestBody EmployeeCreateRequestDto request){
 
 
         return authService.createuser(request);
@@ -30,6 +27,7 @@ private AuthService authService;
 
 
       return   authService.Login(loginRequest);
+
     }
 
 
