@@ -1,6 +1,10 @@
 package Ems.demo.Entity;
 
 import Ems.demo.Entity.ENUM.EmployeeStatus;
+<<<<<<< HEAD
+=======
+import Ems.demo.Entity.ENUM.RoleType;
+>>>>>>> 840969f0fa13d34c15139ea2722c362c10d32fa3
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,6 +21,7 @@ public class Employee {
 
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
+<<<<<<< HEAD
 private long id;
 
 private String empId;
@@ -24,6 +29,15 @@ private String firstName;
 private String LastName;
 private String phoneNumber;
 private String address;
+=======
+
+    private long EmpId;
+
+    private String firstname;
+    private String Lastname;
+private String phoneNumber;
+    private String address;
+>>>>>>> 840969f0fa13d34c15139ea2722c362c10d32fa3
 private LocalDate DateOfJoining;
 
 @ManyToOne
@@ -40,10 +54,13 @@ private LocalDate DateOfJoining;
 // bidrecional
     @OneToMany(mappedBy = "manager")
     private List<Employee> teamMembers;
+<<<<<<< HEAD
     @OneToOne(mappedBy = "employee")
     private User user;
 
 
+=======
+>>>>>>> 840969f0fa13d34c15139ea2722c362c10d32fa3
 
 
 
